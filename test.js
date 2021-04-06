@@ -242,6 +242,17 @@ tr.register( // start register
             m1.add(-5).add(m1.mult(-1)).toString()
         )
         assertError(()=>m.modifySub(m2), `MultError: Matrixs size (1x4) !== other matrixs size (4x4)`)
+    },
+    function Transpose(){
+        const mt = m1.transpose()
+        assertEqual(mt.toString(), "[[0],[1],[2],[3]]")
+        assertEqual(m1.toString(), str1)
+    },
+    function ModifyTranspose(){
+        const mt = m1.copy()
+        mt.modifyTranspose()
+        assertEqual(mt.toString(), "[[0],[1],[2],[3]]")
+        assertEqual(mt.modifyTranspose().toString(), str1)
     }
 ) // end register
 tr.run()

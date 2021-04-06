@@ -197,6 +197,20 @@ class Matrix extends Array {
     })
     return resultMatrix
   }
+  transpose(){
+    const [i, j] = this.size()
+    const self = this
+    return new Matrix(j, i).modify(function(_, i, j){
+      return self[j][i]
+    })
+  }
+  modifyTranspose(){
+    const result = this.transpose()
+    this.resize(...result.size())
+    return this.modify(function(_, i, j){
+      return result[i][j]
+    })
+  }
   toString(){
     return JSON.stringify(this)
   }
