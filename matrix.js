@@ -1,12 +1,10 @@
-const Matrix = (function(){ // OPEN DEVELOP PLACE
-
 class Matrix extends Array {
   constructor(i, j){
     super()
     this.resize(i, j)
   }
-  isMatrix(some){
-    return typeof some === "object" && some.__proto__.constructor === Matrix
+  static isMatrix(some){
+    return typeof some === "object" && some instanceof Matrix
   }
   size(){
     const i = this.length
@@ -54,8 +52,8 @@ class Matrix extends Array {
     })
   }
   multMatrix(matrix){
-    const [_, j] = this.size()[1]
-    const [oi, _] = matrix.size()[0]
+    const [i, j] = this.size()
+    const [oi, oj] = matrix.size()
     if(j !== oi) {
       throw new Error(`MultError: Matrixs width (${j}) !== other matrixs height (${oi})`)
     }
@@ -74,7 +72,7 @@ class Matrix extends Array {
   modifyAddMatrix(matrix){
     const [i, j] = this.size()
     const [oi, oj] = matrix.size()
-    if(i !== oi && j !== oj){
+    if(i !== oi || j !== oj){
       throw new Error(`MultError: Matrixs size (${i}x${j}) !== other matrixs size (${oi}x${oj})`)
     }
     return this.modify(function(prev, i, j){
@@ -87,7 +85,7 @@ class Matrix extends Array {
   modifySubMatrix(matrix){
     const [i, j] = this.size()
     const [oi, oj] = matrix.size()
-    if(i !== oi && j !== oj){
+    if(i !== oi || j !== oj){
       throw new Error(`MultError: Matrixs size (${i}x${j}) !== other matrixs size (${oi}x${oj})`)
     }
     return this.modify(function(prev, i, j){
@@ -103,7 +101,7 @@ class Matrix extends Array {
   addMatrix(matrix){
     const [i, j] = this.size()
     const [oi, oj] = matrix.size()
-    if(i !== oi && j !== oj){
+    if(i !== oi || j !== oj){
       throw new Error(`MultError: Matrixs size (${i}x${j}) !== other matrixs size (${oi}x${oj})`)
     }
     const self = this
@@ -117,7 +115,7 @@ class Matrix extends Array {
   subMatrix(matrix){
     const [i, j] = this.size()
     const [oi, oj] = matrix.size()
-    if(i !== oi && j !== oj){
+    if(i !== oi || j !== oj){
       throw new Error(`MultError: Matrixs size (${i}x${j}) !== other matrixs size (${oi}x${oj})`)
     }
     const self = this
@@ -129,7 +127,7 @@ class Matrix extends Array {
     let result
     if(typeof some === "number"){
       result = this.multValue(some)
-    } else if(this.isMatrix(some)) {
+    } else if(Matrix.isMatrix(some)) {
       result = this.multMatrix(some)
     } else {
       throw new Error(`MultError: wrong type of some (${some})`)
@@ -140,7 +138,7 @@ class Matrix extends Array {
     let result
     if(typeof some === "number"){
       result = this.modifyMultValue(some)
-    } else if(this.isMatrix(some)) {
+    } else if(Matrix.isMatrix(some)) {
       result = this.modifyMultMatrix(some)
     } else {
       throw new Error(`ModifyMultError: wrong type of some (${some})`)
@@ -151,7 +149,7 @@ class Matrix extends Array {
     let result
     if(typeof some === "number"){
       result = this.addValue(some)
-    } else if(this.isMatrix(some)) {
+    } else if(Matrix.isMatrix(some)) {
       result = this.addMatrix(some)
     } else {
       throw new Error(`AddError: wrong type of some (${some})`)
@@ -162,7 +160,7 @@ class Matrix extends Array {
     let result
     if(typeof some === "number"){
       result = this.subValue(some)
-    } else if(this.isMatrix(some)) {
+    } else if(Matrix.isMatrix(some)) {
       result = this.subMatrix(some)
     } else {
       throw new Error(`SubError: wrong type of some (${some})`)
@@ -173,7 +171,7 @@ class Matrix extends Array {
     let result
     if(typeof some === "number"){
       result = this.modifyAddValue(some)
-    } else if(this.isMatrix(some)) {
+    } else if(Matrix.isMatrix(some)) {
       result = this.modifyAddMatrix(some)
     } else {
       throw new Error(`ModifyAddError: wrong type of some (${some})`)
@@ -184,7 +182,7 @@ class Matrix extends Array {
     let result
     if(typeof some === "number"){
       result = this.modifySubValue(some)
-    } else if(this.isMatrix(some)) {
+    } else if(Matrix.isMatrix(some)) {
       result = this.modifySubMatrix(some)
     } else {
       throw new Error(`ModifySubError: wrong type of some (${some})`)
@@ -200,11 +198,8 @@ class Matrix extends Array {
     return resultMatrix
   }
   toString(){
-    return this.map(arr=>`|${arr.join(',')}|`).join('\n')
+    return JSON.stringify(this)
   }
 }
 
-return Matrix
-
-})() // CLOSE DEVELOP PLACE 
 module.exports = Matrix
