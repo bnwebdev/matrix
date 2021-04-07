@@ -253,6 +253,11 @@ tr.register( // start register
         mt.modifyTranspose()
         assertEqual(mt.toString(), "[[0],[1],[2],[3]]")
         assertEqual(mt.modifyTranspose().toString(), str1)
+    },
+    function From(){
+      let arr = [[5, 2], [3, 1]]
+      const m = Matrix.from(arr)
+      assertEqual(JSON.stringify(arr), m.toString())
     }
 ) // end register
 tr.run()
