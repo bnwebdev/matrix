@@ -1,4 +1,10 @@
 module.exports = class TestRunner {
+    constructor(){
+      this.successed = 0
+      this.falsed = 0
+      this.tests = []
+      
+    }
     registerOne(test){
         this.tests.push([test.name, test])
     }
@@ -42,7 +48,4 @@ module.exports = class TestRunner {
         }
         console.log(`TestRunner end run test: ${this.successed} tests TRUE, ${this.falsed} tests FALSE`)
     }
-    tests = []
-    successed = 0
-    falsed = 0
 }

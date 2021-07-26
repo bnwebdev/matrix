@@ -6,6 +6,12 @@ class Matrix extends Array {
   static isMatrix(some){
     return typeof some === "object" && some instanceof Matrix
   }
+  static from(array2d){
+    const matrix = new Matrix(...Matrix.prototype.size.call(array2d)) 
+    return matrix.modify(function(_, i, j){
+      return array2d[i][j]
+    })
+  }
   size(){
     const i = this.length
     const j = this[0]? this[0].length: 0
