@@ -1,6 +1,3 @@
-const Matrix = require('./matrix')
-const TestRunner = require('./tester')
-
 const assert = TestRunner.assert
 const assertEqual = TestRunner.assertEqual
 const assertNotEqual = TestRunner.assertNotEqual

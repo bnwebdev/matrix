@@ -1,4 +1,4 @@
-module.exports = class TestRunner {
+class TestRunner {
     constructor(){
       this.successed = 0
       this.falsed = 0

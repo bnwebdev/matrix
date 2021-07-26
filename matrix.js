@@ -221,5 +221,3 @@ class Matrix extends Array {
     return JSON.stringify(this)
   }
 }
-
-if(module) module.exports = Matrix
