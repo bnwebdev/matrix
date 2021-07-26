@@ -216,4 +216,4 @@ class Matrix extends Array {
   }
 }
 
-module.exports = Matrix
+if(module) module.exports = Matrix
