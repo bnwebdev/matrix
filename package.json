@@ -1,0 +1,24 @@
+{
+  "name": "matrix",
+  "version": "1.0.0",
+  "description": "Matrix",
+  "main": "matrix.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bnwebdev/matrix.git"
+  },
+  "keywords": [
+    "matrix",
+    "js"
+  ],
+  "author": "Nikita Bereziuk <nikitber@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bnwebdev/matrix/issues"
+  },
+  "homepage": "https://github.com/bnwebdev/matrix#readme"
+}

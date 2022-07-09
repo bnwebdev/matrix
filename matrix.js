@@ -221,3 +221,5 @@ class Matrix extends Array {
     return JSON.stringify(this)
   }
 }
+
+export default Matrix
